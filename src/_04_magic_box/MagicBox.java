@@ -4,7 +4,6 @@ package _04_magic_box;
  *    Level 1
  */
 
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -21,21 +20,21 @@ import javax.swing.SwingUtilities;
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	/*
-	 * We are going to hide secrets within the magic box. 
-	 * When the user clicks on a secret place, stuff will happen.
+	 * We are going to hide secrets within the magic box. When the user clicks on a
+	 * secret place, stuff will happen.
 	 * 
 	 * 1. Make the frame respond to mouse clicks.
 	 * 
-	 * 2. When the mouse is clicked, use the Media Palace (read the code in the magic_box package) to play sounds, 
-	 *    show images or speak.
+	 * 2. When the mouse is clicked, use the Media Palace (read the code in the
+	 * magic_box package) to play sounds, show images or speak.
 	 * 
-	 * 3. Choose 3 different locations on the background image.You can either use the mouse position, 
-	 *    or the color of the image, then decide what action the Media Palace should take in each case. 
-	 *     backgroundImage.getRGB(e.getX(), e.getY()) will give you the color of the current pixel.
+	 * 3. Choose 3 different locations on the background image.You can either use
+	 * the mouse position, or the color of the image, then decide what action the
+	 * Media Palace should take in each case. backgroundImage.getRGB(e.getX(),
+	 * e.getY()) will give you the color of the current pixel.
 	 */
 
 	BufferedImage backgroundImage;
-
 
 	@Override
 	public void run() {
@@ -54,6 +53,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -73,33 +73,51 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		MediaPalace palace = new MediaPalace();
+		System.out.println(backgroundImage.getRGB(e.getX(), e.getY()));
+		backgroundImage.getRGB(e.getX(), e.getY());
+
+		int water1 = -69429;
+		int water2 = -12726830;
+		int water3 = -6961721;
+		int water4 = -13458771;
+
+		if (backgroundImage.equals(water1)) {
+			palace.playMusicOnComputer("waterfall.mp3");
+		}
+		/*if (backgroundImage.equals(water2)) {
+			playSoundFromInternet(String soundURL);
+		}
+		if (backgroundImage.equals(water3)) {
+			playSoundFromInternet(String soundURL);
+		}
+		if (backgroundImage.equals(water4)) {
+			playSoundFromInternet(String soundURL);
+		}*/
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-
-
