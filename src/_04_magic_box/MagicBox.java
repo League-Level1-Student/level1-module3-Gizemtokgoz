@@ -14,8 +14,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import javazoom.jl.decoder.JavaLayerException;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 
@@ -35,6 +38,8 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 */
 
 	BufferedImage backgroundImage;
+	MediaPalace.Song s;
+	MediaPalace.Song r;
 
 	@Override
 	public void run() {
@@ -80,27 +85,33 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		MediaPalace palace = new MediaPalace();
-		System.out.println(backgroundImage.getRGB(e.getX(), e.getY()));
-		backgroundImage.getRGB(e.getX(), e.getY());
+		System.out.println(e.getX());
+		System.out.println(e.getY());
 
-		int water1 = -69429;
-		int water2 = -12726830;
-		int water3 = -6961721;
-		int water4 = -13458771;
+		int x = e.getX();
+		int y = e.getY();
 
-		if (backgroundImage.equals(water1)) {
-			palace.playMusicOnComputer("waterfall.mp3");
+		if (x > 174 && x < 293 && y > 292 && y < 759) {
+			if (r != null) {
+				r.stop();
+			}
+			s = palace.new Song("waterfall.mp3");
+			s.play();
 		}
-		/*if (backgroundImage.equals(water2)) {
-			playSoundFromInternet(String soundURL);
+
+		if (x > 279 && x < 403 && y > 147 && y < 240) {
+			if (s != null) {
+				s.stop();
+			}
+			palace.loadSound("squeek.wav").play();
 		}
-		if (backgroundImage.equals(water3)) {
-			playSoundFromInternet(String soundURL);
-		}
-		if (backgroundImage.equals(water4)) {
-			playSoundFromInternet(String soundURL);
-		}*/
 	}
+	/*
+	 * if (backgroundImage.equals(water2)) { playSoundFromInternet(String soundURL);
+	 * } if (backgroundImage.equals(water3)) { playSoundFromInternet(String
+	 * soundURL); } if (backgroundImage.equals(water4)) {
+	 * playSoundFromInternet(String soundURL); }
+	 */
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
