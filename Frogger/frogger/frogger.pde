@@ -34,6 +34,8 @@ class car {
   void moveLeft() {
     xcar -= speed;
     if (xcar < -80) {
+      int randNum = (int)random (8);
+      speed=randNum+4;
       xcar = 800;
     }
   }
@@ -41,6 +43,8 @@ class car {
   void moveRight() {
     xcar += speed;
     if (xcar > 880) {
+      int randNum = (int)random (8);
+      speed=randNum+4;
       xcar = 0;
     }
   }
@@ -56,8 +60,9 @@ boolean intersects(car car) {
 }
 
   car racecar1 = new car(600, 400, 100, 5);
-  car racecar2 = new car(100, 200, 100, 6);
-  car racecar3 = new car(600, 100, 100, 4);
+  car racecar2 = new car(100, 200, 100, 7);
+  car racecar3 = new car(600, 100, 100, 6);
+  car racecar4 = new car(100, 300, 100, 8);
 
   void setup() {
     size(800, 600);
@@ -88,10 +93,17 @@ boolean intersects(car car) {
       x=400;
       y=550;
     }
-
-    if (y < 0) {
-      x = 400;
-      y = 550;
+    
+    racecar4.display();
+    racecar4.moveRight();
+    if (intersects(racecar4)==true) {
+      x=400;
+      y=550;
+    }
+    
+    if (y<50) {
+      textSize(35);
+      text ("good job! you won", 250, 300);
     }
 
     if (y > 600) {
@@ -115,16 +127,16 @@ boolean intersects(car car) {
     if (key == CODED) {
       if (keyCode == UP)
       {
-        y -= 5;
+        y -= 8;
       } else if (keyCode == DOWN)
       {
-        y += 5;
+        y += 8;
       } else if (keyCode == RIGHT)
       {
-        x += 5;
+        x += 8;
       } else if (keyCode == LEFT)
       {
-        x -= 5;
+        x -= 8;
       }
     }
   }
